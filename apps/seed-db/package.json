@@ -1,0 +1,19 @@
+{
+  "name": "@repo/seed-db",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:problem": "npx esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js",
+    "seed:problem": "node dist/index",
+    "build:language": "npx esbuild src/addLanguage.ts --bundle --platform=node --outfile=dist/addLanguage.js",
+    "seed:language": "node dist/addLanguage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@repo/db": "*"
+  }
+}
