@@ -1,9 +1,9 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@repo/db/client";
 import bcrypt from "bcrypt";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -19,15 +19,22 @@ export const authOptions = {
           const user = await prisma.user.findUnique({
             where: { email: credentials.email },
           });
-          if (!user) return null;
+          if (!user) {
+            console.error("No user found with the provided email");
+            return null;
+          }
           const isPasswordValid = await bcrypt.compare(
             credentials.password,
             user.password
           );
-          if (!isPasswordValid) return null;
+          if (!isPasswordValid) {
+            console.error("Invalid password for the provided email");
+            return null;
+          }
           console.log({ id: user.id, email: user.email });
           return { id: user.id, email: user.email };
         } catch (error) {
+          console.error("Error during user authorization", error);
           return null;
         }
       },
@@ -49,7 +56,9 @@ export const authOptions = {
       return session;
     },
   },
-  session: { strategy: "jwt" },
+  session: {
+    strategy: "jwt",
+  },
   secret: process.env.JWT_SECRET || "random",
 };
 

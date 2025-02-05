@@ -5,8 +5,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install --legacy-peer-deps  # Use --legacy-peer-deps to handle npm workspace issues
-RUN npm run build  # Assuming you have a "build" script to build all apps
+RUN npm install --legacy-peer-deps  
+RUN npm run dev  
 
 
 FROM node:18-alpine AS runner

@@ -50,11 +50,8 @@ function FloatingPaths({ position }: { position: number }) {
   );
 }
 
-export default function BackgroundPaths({
-  title = "Code X",
-}: {
-  title: string;
-}) {
+export default function BackgroundPaths() {
+  const title = "Code X";
   const words = title.split(" ");
   const router = useRouter();
   useEffect(() => {
