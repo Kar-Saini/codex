@@ -1,7 +1,7 @@
 "use client";
 
 import { LogOut } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -20,13 +20,13 @@ const Appbar = () => {
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 items-center lg:justify-between sm:justify-center">
           <div className="flex items-center">
             <h1 className="text-3xl font-extrabold text-gray-800 tracking-widest">
-              CODEX {"< /   >"}
+              CODEX {"< / >"}
             </h1>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className=" items-center space-x-4 lg:block hidden">
             <Link
               href="/problems"
               className={`text-lg font-medium transition-colors hover:text-blue-600 ${
@@ -46,8 +46,8 @@ const Appbar = () => {
           </div>
           <div>
             {session ? (
-              <div className="flex items-center space-x-4">
-                <span className="text-sm text-gray-600 flex flex-col">
+              <div className=" items-center space-x-4 flex ">
+                <span className="text-sm text-gray-600 flex flex-col ">
                   <span className="text-neutral-600">
                     {session.data?.email}
                   </span>
@@ -55,7 +55,9 @@ const Appbar = () => {
                     {session.data?.id.slice(0, 8)}
                   </span>
                 </span>
-                <LogOut />
+                <button onClick={() => signOut()}>
+                  <LogOut />
+                </button>
               </div>
             ) : (
               <button className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">

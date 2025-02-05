@@ -59,7 +59,7 @@ export default function BackgroundPaths({
   const router = useRouter();
   useEffect(() => {
     setTimeout(() => {
-      router.push("/dashboard");
+      router.push("/problems");
     }, 5000);
   }, []);
 

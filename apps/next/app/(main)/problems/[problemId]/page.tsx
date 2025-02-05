@@ -1,11 +1,12 @@
 import prisma from "@repo/db/client";
 import MarkdownComponent from "../../../_components/MarkdownComponent";
 import CodeEditorComponent from "../../../_components/CodeEditorComponent";
+import { getSubmissionsByProblemId } from "../../../_actions/getSubmissionsByProblemId";
 
 const Problem = async ({ params }: { params: { problemId: string } }) => {
   const { problemId } = params;
   const problem = await prisma.problem.findUnique({ where: { id: problemId } });
-
+  const submissions = await getSubmissionsByProblemId(problemId);
   if (!problem) {
     return <div>Invalid</div>;
   }
@@ -19,6 +20,7 @@ const Problem = async ({ params }: { params: { problemId: string } }) => {
         <CodeEditorComponent
           problemId={problemId}
           defaultCode={defaultCodeForProblem?.code || "No default code found"}
+          submissions={submissions}
         />
       </div>
     </div>
