@@ -53,7 +53,7 @@ function FloatingPaths({ position }: { position: number }) {
 export default function BackgroundPaths({
   title = "Code X",
 }: {
-  title?: string;
+  title: string;
 }) {
   const words = title.split(" ");
   const router = useRouter();
