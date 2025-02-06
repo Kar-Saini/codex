@@ -6,7 +6,8 @@ WORKDIR /app
 COPY . .
 
 RUN npm install --legacy-peer-deps  
-RUN npm run dev  
+CMD ["npm", "run", "dev"]
+
 
 
 FROM node:18-alpine AS runner
