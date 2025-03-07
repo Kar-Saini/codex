@@ -12,11 +12,11 @@ const Appbar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (session.status === "unauthenticated") {
+    console.log(session);
+    if (session.status === "unauthenticated" || session.status === "loading") {
       router.push("/auth");
     }
   }, []);
-  console.log(session);
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
       <div className="container mx-auto px-4">

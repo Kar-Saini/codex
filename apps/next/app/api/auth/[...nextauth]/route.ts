@@ -31,7 +31,6 @@ export const authOptions: NextAuthOptions = {
             console.error("Invalid password for the provided email");
             return null;
           }
-          console.log({ id: user.id, email: user.email });
           return { id: user.id, email: user.email };
         } catch (error) {
           console.error("Error during user authorization", error);

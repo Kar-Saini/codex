@@ -7,9 +7,7 @@ async function main(langName: string, judge0Id: number) {
         name: langName,
       },
     });
-    console.log("Added");
   } catch (error) {
-    console.log(error);
     console.log("error");
   }
 }

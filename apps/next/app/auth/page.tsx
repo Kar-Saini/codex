@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ChangeEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+
 const INITIAL_FORMDATA = { name: "", email: "", password: "" };
 export default function SignIn() {
   const [formState, setFormState] = useState<"signin" | "signup">("signin");
@@ -16,11 +17,9 @@ export default function SignIn() {
 
   useEffect(() => {
     if (session.status === "authenticated") {
-      toast.success("Already signed in!!");
-      router.push("/dashboard");
+      router.push("/problems");
     }
   }, [session.status]);
-  console.log(session);
   function handleFormDataChange(e: ChangeEvent<HTMLInputElement>) {
     setFormData((prev) => {
       return {
@@ -30,7 +29,6 @@ export default function SignIn() {
     });
   }
   async function handleFormSubmit() {
-    console.log(formData);
     if (formState === "signin") {
       try {
         const result = await signIn("credentials", {
@@ -38,7 +36,6 @@ export default function SignIn() {
           email: formData.email,
           password: formData.password,
         });
-        console.log(result);
         if (result?.error) toast.error(result.error);
         else {
           toast.success("Signed In");
@@ -51,17 +48,21 @@ export default function SignIn() {
     } else {
       try {
         const result = await axios.post("/api/user", formData);
+        console.log(result);
         if (result.status === 200) {
           setFormData(INITIAL_FORMDATA);
           toast.success("User created");
           setFormState("signin");
+        } else {
+          toast.error("Email Exists");
+          setFormData(INITIAL_FORMDATA);
         }
       } catch (error) {
-        console.log("Error");
+        setFormData(INITIAL_FORMDATA);
+        toast.error("Error");
       }
     }
   }
-  console.log(formData);
   return (
     <div className=" bg-gradient-to-b h-full from-blue-50 to-white flex flex-col justify-between bg-yellow-500 w-full">
       <main className="flex-grow flex items-center justify-center px-6">

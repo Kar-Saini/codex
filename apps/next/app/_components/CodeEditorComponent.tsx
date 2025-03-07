@@ -24,7 +24,6 @@ const CodeEditorComponent = ({
     setLoading(true);
     try {
       const result = await axios.post("/api/submission", { problemId, code });
-      console.log(result.data);
       setSubmissionResults(result.data.finalResponse);
     } catch (error) {
       console.log("Error:", error); // Log the entire error for debugging
@@ -52,7 +51,6 @@ const CodeEditorComponent = ({
       setLoading(false);
     }
   }
-  console.log(submissions);
 
   return (
     <div className="border-2 bg-white shadow flex flex-col p-4 m-1 relative">

@@ -7,7 +7,6 @@ export class Parser {
   parse(input: string) {
     const lines = input.split("\n").map((line) => line.trim());
     let currentSection: string = "";
-    console.log(lines);
     lines.map((line) => {
       if (line.startsWith("Problem name"))
         this.problemName = this.extractQuotedValue(line);
@@ -17,8 +16,7 @@ export class Parser {
       else if (line.startsWith("Output Structure")) currentSection = "output";
       else if (line.startsWith("Input Feild") && currentSection === "input") {
         const feild = this.extractField(line);
-        console.log("extracted input");
-        console.log(feild);
+
         if (feild) this.inputFeilds.push(feild);
       } else if (
         line.startsWith("Output Feild") &&
@@ -31,7 +29,6 @@ export class Parser {
   }
 
   extractField(line: string): { type: string; name: string } | null {
-    console.log("called");
     const match = line.match(/ : (\w+(?:<\w+>)?) (\w+)$/);
     return match ? { type: match[1], name: match[2] } : null;
   }

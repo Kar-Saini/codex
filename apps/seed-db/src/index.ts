@@ -10,7 +10,6 @@ async function main(slug: string) {
     slug,
     "/Problem.md"
   );
-  console.log(pathToProblemStatement);
   try {
     const problemDescription = fs.readFileSync(pathToProblemStatement, "utf-8");
     console.log("Description read");
