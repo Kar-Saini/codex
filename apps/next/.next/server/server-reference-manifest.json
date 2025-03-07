@@ -1,5 +1,14 @@
 {
-  "node": {},
+  "node": {
+    "7b70e1a343abb21b01c62495a6f56d20d61b13bd": {
+      "workers": {
+        "app/(main)/problems/page": "(rsc)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Ckacky%5C%5CDesktop%5C%5Ccodex%5C%5Capps%5C%5Cnext%5C%5Capp%5C%5C_actions%5C%5CgetAllProblems.ts%22%2C%5B%22getAllProblems%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/(main)/problems/page": "rsc"
+      }
+    }
+  },
   "edge": {},
   "encryptionKey": "BV0h1NRYMkT4/HXx5F29fAhFELnsRNTXILt4HW4SFdg="
 }
