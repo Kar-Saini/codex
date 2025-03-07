@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
-    "@repo/store": "*",
     "@repo/ui": "*",
     "@tailwindcss/typography": "^0.5.16",
     "@types/bcrypt": "^5.0.2",

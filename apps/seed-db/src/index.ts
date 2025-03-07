@@ -30,7 +30,6 @@ async function main(slug: string) {
     const language = await prisma.language.findUnique({
       where: { name: "js" },
     });
-
     await prisma.defaultCode.upsert({
       where: { problemId: problem.id },
       create: {

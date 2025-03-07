@@ -32,7 +32,6 @@ const CodeEditorComponent = ({
       // Check if the error has a response (server error)
       if (error.response) {
         console.log("Response Error:", error.response); // Log response details
-
         const status = error.response.status;
         const message = error.response.data.message || "Internal Server Error";
         const details = error.response.data.error || "No additional details.";

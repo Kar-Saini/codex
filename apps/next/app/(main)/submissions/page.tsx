@@ -7,7 +7,7 @@ const submissions = async () => {
   if (!submissions) return <div>No submission</div>;
   return (
     <div className="mx-10 my-4">
-      <SubmissionTable submissions={submissions} showProblemId={true} />;
+      <SubmissionTable submissions={submissions} showProblemId={true} />
     </div>
   );
 };

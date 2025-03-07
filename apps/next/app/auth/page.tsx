@@ -39,12 +39,11 @@ export default function SignIn() {
           password: formData.password,
         });
         console.log(result);
-
         if (result?.error) toast.error(result.error);
         else {
           toast.success("Signed In");
           setFormData(INITIAL_FORMDATA);
-          router.push("/dashboard");
+          router.push("/problems");
         }
       } catch (error) {
         toast.error(error as string);
@@ -53,8 +52,8 @@ export default function SignIn() {
       try {
         const result = await axios.post("/api/user", formData);
         if (result.status === 200) {
-          toast.success("User created");
           setFormData(INITIAL_FORMDATA);
+          toast.success("User created");
           setFormState("signin");
         }
       } catch (error) {
